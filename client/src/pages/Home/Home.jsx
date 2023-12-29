@@ -52,11 +52,11 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Fiverr Business Component */}
+      {/* Remotely Inc. Business Component */}
       <div className="features dark">
         <div className="container">
           <div className="item">
-            <h2>fiverr business</h2>
+            <h2>Remotely Inc. business</h2>
             <h1>A business solution designed for <span>teams</span></h1>
             <p>Upgrade to a curated experience packed with tools and benefits, dedicated to businesses</p>
             <div className="title">
@@ -71,7 +71,7 @@ const Home = () => {
               <img src="./media/check.png" alt="check" />
               <h6>Manage teamwork and boost productivity with one powerful workspace</h6>
             </div>
-            <button>Explore Fiverr Business</button>
+            <button>Explore Remotely Inc. Business</button>
           </div>
           <div className="item">
             <img src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624757/business-desktop-870-x1.png" alt="" />

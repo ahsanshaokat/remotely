@@ -79,10 +79,10 @@ const MyGigs = () => {
                           />
                         </td>
                         <td>{gig.title}</td>
-                        <td>{gig.price.toLocaleString("en-IN", {
+                        <td>{gig.price.toLocaleString("en-US", {
                           maximumFractionDigits: 0,
                           style: "currency",
-                          currency: "INR",
+                          currency: "USD",
                         })}</td>
                         <td>{gig.sales}</td>
                         <td>

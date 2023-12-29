@@ -39,8 +39,8 @@ const Footer = () => {
             <h1>Support</h1>
             <span>Help & Support</span>
             <span>Trust & Safety</span>
-            <span>Selling on Fiverr</span>
-            <span>Buying on Fiverr</span>
+            <span>Selling on Remotely Inc.</span>
+            <span>Buying on Remotely Inc.</span>
           </div>
           <div className="item">
             <h1>Community</h1>
@@ -53,16 +53,16 @@ const Footer = () => {
             <span>Invite a Friend</span>
           </div>
           <div className="item">
-            <h1>More From Fiverr</h1>
-            <span>Fiverr Business</span>
-            <span>Fiverr Pro</span>
-            <span>Fiverr Studios</span>
-            <span>Fiverr Logo Maker</span>
-            <span>Fiverr Guild</span>
+            <h1>More From Remotely Inc.</h1>
+            <span>Remotely Inc. Business</span>
+            <span>Remotely Inc. Pro</span>
+            <span>Remotely Inc. Studios</span>
+            <span>Remotely Inc. Logo Maker</span>
+            <span>Remotely Inc. Guild</span>
             <span>Get Inspired</span>
-            <span>Fiverr Select</span>
+            <span>Remotely Inc. Select</span>
             <span>Clear Voice</span>
-            <span>Fiverr Workspace</span>
+            <span>Remotely Inc. Workspace</span>
             <span>Learn</span>
             <span>Working Not Working</span>
           </div>
@@ -70,8 +70,8 @@ const Footer = () => {
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>fiverr</h2>
-            <span>© Fiverr International Ltd. {new Date().getFullYear()}</span>
+            <h2>Remotely Inc.</h2>
+            <span>© Remotely Inc. {new Date().getFullYear()}</span>
           </div>
           <div className="right">
             <div className="social">

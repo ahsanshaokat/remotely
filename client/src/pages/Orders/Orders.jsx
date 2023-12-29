@@ -86,10 +86,10 @@ const Orders = () => {
                   </td>
                   <td>{order.title.slice(0, 30)}...</td>
                   <td>
-                    {order.price.toLocaleString("en-IN", {
+                    {order.price.toLocaleString("en-US", {
                       maximumFractionDigits: 0,
                       style: "currency",
-                      currency: "INR",
+                      currency: "USD",
                     })}
                   </td>
                   <td>

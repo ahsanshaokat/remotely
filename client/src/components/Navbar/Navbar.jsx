@@ -102,14 +102,13 @@ const Navbar = () => {
       <div className="container">
         <div className="logo">
           <Link to="/" className="link">
-            <span className="text">fiverr</span>
+            <img className="white" src={showMenu ? "/media/logo-dark.png":"/media/logo-white.png"} />
           </Link>
-          <span className="dot">.</span>
         </div>
 
         <div className="links">
           <div className="menu-links">
-            <span>Fiverr Business</span>
+            <span>Remotely Business</span>
             <span>Explore</span>
             <span>English</span>
             {!user?.isSeller && <span>Become a Seller</span>}

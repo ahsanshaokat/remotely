@@ -26,10 +26,10 @@ const GigCard = (props) => {
           <div className="price">
             <span>STARTING AT</span>
             <h2>
-              {data.price.toLocaleString('en-IN', {
+              {data.price.toLocaleString('en-US', {
                 maximumFractionDigits: 0,
                 style: 'currency',
-                currency: 'INR',
+                currency: 'USD',
               })}
             </h2>
           </div>

@@ -13,14 +13,15 @@ const authRegister = async (request, response) => {
 
     try {
         const hash = bcrypt.hashSync(password, saltRounds);
-        const { country } = satelize.satelize({ ip: ips[0] }, (error, payload) => payload);
+        // const { country } = satelize.satelize({ ip: ips[0] }, (error, payload) => payload);
         
         const user = new User({
             username,
             email,
             password: hash,
             image,
-            country: country.en,
+            country: "PK",
+            // country: country.en,
             description,
             isSeller,
             phone
@@ -42,7 +43,7 @@ const authRegister = async (request, response) => {
 
         return response.status(500).send({
             error: true,
-            message: 'Something went wrong!'
+            message: message
         });
     }
 }

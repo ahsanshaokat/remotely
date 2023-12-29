@@ -43,7 +43,7 @@ const Gig = () => {
             ? 'Something went wrong!'
             : <div className="container">
               <div className="left">
-                <span className="breadcrumbs">Liverr Graphics & Design</span>
+                <span className="breadcrumbs">Graphics & Design</span>
                 <h1>{data?.title}</h1>
                 <div className="user">
                   <img
@@ -96,10 +96,10 @@ const Gig = () => {
                 <div className="right-mobile">
                   <div className="price">
                     <h3>{data?.shortTitle}</h3>
-                    <h2>{data?.price.toLocaleString('en-IN', {
+                    <h2>{data?.price.toLocaleString('en-US', {
                       maximumFractionDigits: 0,
                       style: 'currency',
-                      currency: 'INR',
+                      currency: 'USD',
                     })}</h2>
                   </div>
                   <p>
@@ -193,10 +193,10 @@ const Gig = () => {
               <div className="right">
                 <div className="price">
                   <h3>{data?.shortTitle}</h3>
-                  <h2>{data?.price.toLocaleString('en-IN', {
+                  <h2>{data?.price.toLocaleString('en-US', {
                     maximumFractionDigits: 0,
                     style: 'currency',
-                    currency: 'INR',
+                    currency: 'USD',
                   })}</h2>
                 </div>
                 <p>

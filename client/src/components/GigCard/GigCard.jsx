@@ -11,7 +11,7 @@ const GigCard = (props) => {
         <div className="info">
           <div className="user">
             <img src={data.userID.image || './media/noavatar.png'} alt="" />
-            <span>{data.userID.username}</span>
+            <span>{data.userID.fullname}</span>
           </div>
           <p>{data.title}</p>
           <div className="star">

@@ -136,7 +136,7 @@ const Navbar = () => {
               {user && (
                 <div className="user" onClick={() => setShowPanel(!showPanel)}>
                   <img src={user.image || "/media/noavatar.png"} />
-                  <span>{user?.username}</span>
+                  <span>{user?.fullname}</span>
                   {showPanel && (
                     <div className="options">
                       {user?.isSeller && (

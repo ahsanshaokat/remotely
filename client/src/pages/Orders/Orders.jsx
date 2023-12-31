@@ -81,8 +81,8 @@ const Orders = () => {
                   </td>
                   <td>
                     {user.isSeller
-                      ? order.buyerID.username
-                      : order.sellerID.username}
+                      ? order.buyerID.fullname
+                      : order.sellerID.fullname}
                   </td>
                   <td>{order.title.slice(0, 30)}...</td>
                   <td>

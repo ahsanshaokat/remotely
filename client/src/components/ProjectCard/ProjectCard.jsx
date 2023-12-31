@@ -12,7 +12,7 @@ const ProjectCard = (props) => {
               <img src={data.pp} alt={data.title} />
               <div className="text">
                 <h2>{data.cat}</h2>
-                <span>{data.username}</span>
+                <span>{data.fullname}</span>
               </div>
             </div>
         </div>

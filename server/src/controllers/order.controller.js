@@ -1,10 +1,10 @@
-const { Order, Gig } = require('../models');
+const { Order, Gig, PaymentIntent, Skill } = require('../models');
 const { CustomException } = require('../utils');
 const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 const getOrders = async (request, response) => {
     try {
-        const orders = await Order.find({ $and: [{ $or: [{ sellerID: request.userID }, { buyerID: request.userID }] }, { isCompleted: true }] }).populate(request.isSeller? 'buyerID' : 'sellerID', 'username email image country');
+        const orders = await Order.find({ $and: [{ $or: [{ sellerID: request.userID }, { buyerID: request.userID }] }, { isCompleted: true }] }).populate(request.isSeller? 'buyerID' : 'sellerID', 'fullname username email image country');
         return response.send(orders);
     }
     catch ({ message, status = 500 }) {
@@ -20,14 +20,13 @@ const paymentIntent = async (request, response) => {
 
     try {
         const gig = await Gig.findOne({ _id });
-
-        const payment_intent = await stripe.paymentIntents.create({
+        const payment_intent = new PaymentIntent({
             amount: gig.price * 100,
             currency: "USD",
-            automatic_payment_methods: {
-                enabled: true,
-            },
+            clientSecret: "pi_3MtwBwLkdIwHu7ix28a3tqPa_secret_YrKJUKribcBjcG8HVhfZluoGH"
         });
+
+        await payment_intent.save();
 
         const order = new Order({
             gigID: gig._id,
@@ -36,13 +35,14 @@ const paymentIntent = async (request, response) => {
             buyerID: request.userID,
             sellerID: gig.userID,
             price: gig.price,
-            payment_intent: payment_intent.id
+            payment_intent: payment_intent._id
         });
 
         await order.save();
         return response.send({
             error: false,
-            clientSecret: payment_intent.client_secret
+            clientSecret: payment_intent.clientSecret,
+            paymentIntentId: payment_intent._id
         })
 
     }

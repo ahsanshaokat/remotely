@@ -14,7 +14,7 @@ const Review = (props) => {
           alt=""
         />
         <div className="info">
-          <span>{review?.userID?.username}</span>
+          <span>{review?.userID?.fullname}</span>
           <div className="country">
             <img
               src={country?.normal}

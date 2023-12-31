@@ -7,7 +7,8 @@ import {
 } from "@stripe/react-stripe-js";
 import './CheckoutForm.scss';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
+  const { data } = props;
   const stripe = useStripe();
   const elements = useElements();
 
@@ -20,28 +21,26 @@ const CheckoutForm = () => {
       return;
     }
 
-    const clientSecret = new URLSearchParams(window.location.search).get("payment_intent_client_secret");
+    const clientSecret = new URLSearchParams(window.location.search).get("payment_intent");
 
     if (!clientSecret) {
       return;
     }
 
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
-        case "processing":
-          setMessage("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
-          break;
-        default:
-          setMessage("Something went wrong.");
-          break;
-      }
-    });
+    switch ("succeeded") {
+      case "succeeded":
+        setMessage("Payment succeeded!");
+        break;
+      case "processing":
+        setMessage("Your payment is processing.");
+        break;
+      case "requires_payment_method":
+        setMessage("Your payment was not successful, please try again.");
+        break;
+      default:
+        setMessage("Something went wrong.");
+        break;
+    }
   }, [stripe]);
 
   const handleSubmit = async (event) => {
@@ -55,13 +54,14 @@ const CheckoutForm = () => {
 
     setIsLoading(true);
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: `${window.location.origin}/success`,
-      },
-    });
+    // const { error } = await stripe.confirmPayment({
+    //   elements,
+    //   confirmParams: {
+    //     // Make sure to change this to your payment completion page
+    //     return_url: `${window.location.origin}/success`,
+    //   },
+    // });
+    window.location = `${window.location.origin}/success?payment_intent=${data.paymentIntentId}`;
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to

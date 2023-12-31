@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Education, Profile, Person } = require('../models');
 const { CustomException } = require('../utils');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -7,7 +7,7 @@ const { JWT_SECRET, NODE_ENV } = process.env;
 const saltRounds = 10;
 
 const authRegister = async (request, response) => {
-    const { username, email, phone, password, image, isSeller, description } = request.body;
+    const { fullname, username, email, phone, password, image, isSeller, description } = request.body;
     const list = request.headers['x-forwarded-for'] || request.socket.remoteAddress;
     const ips = list.split(',');
 
@@ -15,7 +15,19 @@ const authRegister = async (request, response) => {
         const hash = bcrypt.hashSync(password, saltRounds);
         // const { country } = satelize.satelize({ ip: ips[0] }, (error, payload) => payload);
         
+        const profile = new Profile({});
+        await profile.save();
+        const person = new Person({
+            profileID: profile._id
+        });
+        await person.save();
+        const education = new Education({
+            personID: person._id
+        });
+        await education.save();
+
         const user = new User({
+            fullname,
             username,
             email,
             password: hash,
@@ -24,13 +36,15 @@ const authRegister = async (request, response) => {
             // country: country.en,
             description,
             isSeller,
-            phone
+            phone,
+            personID: person._id
         });
         await user.save();
 
         return response.status(201).send({
             error: false,
-            message: 'New user created!'
+            message: 'New user created!',
+            data: user
         });
     }
     catch({message}) {

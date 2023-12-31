@@ -9,6 +9,7 @@ const Register = () => {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formInput, setFormInput] = useState({
+    fullname: "",
     username: "",
     email: "",
     password: "",
@@ -63,6 +64,13 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>Create a new account</h1>
+          <label htmlFor="">Full name</label>
+          <input
+            name="fullname"
+            type="text"
+            placeholder="John Doe"
+            onChange={handleChange}
+          />
           <label htmlFor="">Username</label>
           <input
             name="username"

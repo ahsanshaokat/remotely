@@ -32,7 +32,7 @@ const createMessage = async (request, response) => {
 const getMessages = async (request, response) => {
     const { conversationID } = request.params;
     try {
-        const messages = await Message.find({ conversationID }).populate('userID', 'username image email');
+        const messages = await Message.find({ conversationID }).populate('userID', 'fullname username image email');
         return response.send(messages);
     }
     catch({message, status = 500}) {

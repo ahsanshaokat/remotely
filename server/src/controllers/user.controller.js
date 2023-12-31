@@ -1,6 +1,66 @@
 const { User, Person, Profile, ProfileSkill } = require('../models');
 const { CustomException } = require('../utils');
 
+const createProfileSkill = async (request, response) => {
+    try {
+        const profileSkill = new ProfileSkill({
+            ...request.body
+        });
+        await profileSkill.save();
+        return response.status(201).send(profileSkill);
+    }
+    catch ({ message, status = 500 }) {
+        return response.status(status).send({
+            error: true,
+            message
+        })
+    }
+}
+
+
+const getProfileSkills = async (request, response) => {
+    const { _id } = request.params;
+
+    try {
+        const profileSkills = await ProfileSkill.find({ profileID: _id }).populate({
+            path: 'skillID',
+            model: 'Skill'
+        });
+
+       if (!profileSkills) {
+            throw CustomException('Skills not found!', 404);
+        }
+        return response.send(profileSkills);
+    }
+    catch ({ message, status = 500 }) {
+        return response.status(status).send({
+            error: true,
+            message
+        })
+    }
+}
+
+
+const deleteProfileSkill = async (request, response) => {
+    const { _id } = request.params;
+
+    try {
+        const profileSkill = await ProfileSkill.findOne({ _id });
+
+        await profileSkill.deleteOne({ _id });
+        return response.send({
+            error: false,
+            message: 'Skill successfully deleted!'
+        });
+    }
+    catch ({ message, status = 500 }) {
+        return response.status(status).send({
+            error: true,
+            message
+        })
+    }
+}
+
 const deleteUser = async (request, response) => {
     const { _id } = request.params;
 
@@ -54,7 +114,8 @@ const updatePerson = async (request, response) => {
         idBadgeStatus,
         contractToHire,
         agencyUid,
-        firstName
+        firstName,
+        lastName
     } = request.body;
 
     try {
@@ -92,7 +153,8 @@ const updatePerson = async (request, response) => {
                 idBadgeStatus,
                 contractToHire,
                 agencyUid,
-                firstName
+                firstName,
+                lastName,
             }
         }, { new: true });
 
@@ -113,30 +175,30 @@ const updatePerson = async (request, response) => {
     }
 }
 
-
 const getPerson = async (request, response) => {
     const { _id } = request.params;
 
     try {
-        const person = await User.findOne({ personID: _id }, "username email image isSeller phone description").populate({
+        const person = await User.findOne({ personID: _id }, "fullname username email image isSeller phone description").populate({
             path: 'personID',
             populate: {
                 path: 'profileID', 
                 model: 'Profile',
                 populate: {
                     path: 'skills',
-                    model: 'profile-skill'
+                    model: 'profile-skills',
+                    populate: {
+                        path: 'skillID',
+                        model: 'Skill'
+                    }
                 }
             }
         });
 
-        let fullProfile = person.toJSON();
-        console.log(fullProfile.personID.profileID._id.toString())
-        fullProfile["skills"] = await ProfileSkill.find({profileID: "659129386e306933a071c9a6"}).exec();//.populate('skillID', 'prettyName')
-        if (!person) {
+       if (!person) {
             throw CustomException('Person not found!', 404);
         }
-        return response.send(fullProfile["skills"]);
+        return response.send(person);
     }
     catch ({ message, status = 500 }) {
         return response.status(status).send({
@@ -147,6 +209,9 @@ const getPerson = async (request, response) => {
 }
 
 module.exports = {
+    createProfileSkill,
+    getProfileSkills,
+    deleteProfileSkill,
     deleteUser,
     updatePerson,
     getPerson,

@@ -17,6 +17,7 @@ import {
   Register,
   Pay,
   Success,
+  Settings,
   NotFound,
 } from "./pages";
 import "./App.scss";
@@ -27,6 +28,14 @@ const paths = [
   { path: "/gigs", element: <Gigs /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
+  {
+    path: "/settings",
+    element: (
+      <PrivateRoute>
+        <Settings />
+      </PrivateRoute>
+    ),
+  },
   {
     path: "/orders",
     element: (

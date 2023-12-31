@@ -73,7 +73,22 @@ const authLogin = async (request, response) => {
 
         const match = bcrypt.compareSync(password, user.password);
         if(match) {
-            const { password, ...data } = user._doc;
+            const userData = await User.findOne({ username }, "fullname username email image isSeller phone description").populate({
+                path: 'personID',
+                populate: {
+                    path: 'profileID', 
+                    model: 'Profile',
+                    populate: {
+                        path: 'skills',
+                        model: 'profile-skills',
+                        populate: {
+                            path: 'skillID',
+                            model: 'Skill'
+                        }
+                    }
+                }
+            });
+            const { password, ...data } = userData._doc;
 
             const token = jwt.sign({
                 _id: user._id,
@@ -119,7 +134,21 @@ const authLogout = async (request, response) => {
 
 const authStatus = async (request, response) => {
     try {
-        const user = await User.findOne({ _id: request.userID }).select('-password');
+        const user = await User.findOne({ _id: request.userID }, "fullname username email image isSeller phone description").populate({
+            path: 'personID',
+            populate: {
+                path: 'profileID', 
+                model: 'Profile',
+                populate: {
+                    path: 'skills',
+                    model: 'profile-skills',
+                    populate: {
+                        path: 'skillID',
+                        model: 'Skill'
+                    }
+                }
+            }
+        });
 
         if(!user) {
             throw CustomException('User not found!', 404);

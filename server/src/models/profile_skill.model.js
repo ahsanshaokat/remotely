@@ -6,14 +6,14 @@ const profileSkillSchema = new mongoose.Schema({
         ref: 'Profile',
         required: true,
     },
-    skillID: {
+    skillID: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Skill',
         required: true,
-    },
+    }],
 }, {
     versionKey: false,
     collection: "profile-skills"
 });
 
-module.exports = mongoose.model('profile-skill', profileSkillSchema, 'profile-skills');
+module.exports = mongoose.model('profile-skills', profileSkillSchema, 'profile-skills');

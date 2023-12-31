@@ -37,7 +37,10 @@ const Navbar = () => {
   }, []);
 
   const isActive = () => {
-    window.scrollY > 0 ? setShowMenu(true) : setShowMenu(false);
+    if(window.location.pathname !== "/")
+      window.scrollY >= 0 ? setShowMenu(true) : setShowMenu(false);
+    else
+      window.scrollY > 0 ? setShowMenu(true) : setShowMenu(false);
   };
 
   useEffect(() => {
@@ -154,6 +157,9 @@ const Navbar = () => {
                       </Link>
                       <Link className="link" to="/messages">
                         Messages
+                      </Link>
+                      <Link className="link" to="/settings">
+                        Settings
                       </Link>
                       <Link className="link" to="/" onClick={handleLogout}>
                         Logout

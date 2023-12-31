@@ -101,9 +101,13 @@ const profileSchema = new mongoose.Schema({
         type: String,
         required: false,
     },
+    lastName: {
+        type: String,
+        required: false,
+    },
     skills: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'profile-skill',
+        ref: 'profile-skills',
         required: false,
     }],
 }, {

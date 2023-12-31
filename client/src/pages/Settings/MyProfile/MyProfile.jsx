@@ -44,7 +44,7 @@ export default function MyProfile() {
         queryKey: ["orders"],
         queryFn: () =>
             axiosFetch
-                .get(`/users/profile/${user.personID._id}`)
+                .get(`/users/profile/${user?.personID?._id}`)
                 .then(({ data }) => {
                     return data;
                 })

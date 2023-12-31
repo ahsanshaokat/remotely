@@ -114,14 +114,14 @@ export default function MyProfile() {
                             <FormControl
                                 sx={{ display: { sm: 'flex-column', md: 'flex-row' }, gap: 2 }}
                             >
-                                <Input value={data.personID?.profileID?.firstName} name='firstName' size="sm" placeholder="First name" />
-                                <Input value={data.personID?.profileID?.lastName} name='lastName' size="sm" placeholder="Last name" sx={{ flexGrow: 1 }} />
+                                <Input value={data?.personID?.profileID?.firstName} name='firstName' size="sm" placeholder="First name" />
+                                <Input value={data?.personID?.profileID?.lastName} name='lastName' size="sm" placeholder="Last name" sx={{ flexGrow: 1 }} />
                             </FormControl>
                         </Stack>
                         <Stack direction="row" spacing={2}>
                             <FormControl>
                                 <FormLabel>Title</FormLabel>
-                                <Input size="sm" defaultValue={data.personID?.profileID?.title} />
+                                <Input size="sm" defaultValue={data?.personID?.profileID?.title} />
                             </FormControl>
                             <FormControl sx={{ flexGrow: 1 }}>
                                 <FormLabel>Email</FormLabel>
@@ -131,7 +131,7 @@ export default function MyProfile() {
                                     startDecorator={<EmailRoundedIcon />}
                                     placeholder="email"
                                     disabled
-                                    defaultValue={data.email}
+                                    defaultValue={data?.email}
                                     sx={{ flexGrow: 1 }}
                                 />
                             </FormControl>

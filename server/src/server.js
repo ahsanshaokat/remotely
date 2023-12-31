@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(compression());
 app.use(cors({
-    origin: ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://localhost:3000', 'https://api.remotelyinc.com', 'https://remotelyinc.com'],
+    origin: ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://localhost:3000', 'https://api.remotelyinc.com/', 'https://remotelyinc.com/'],
     credentials: true
 }));
 

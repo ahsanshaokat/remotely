@@ -1,6 +1,15 @@
+import * as React from 'react';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import Sheet from '@mui/joy/Sheet';
+import Typography from '@mui/joy/Typography';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Input from '@mui/joy/Input';
+import Button from '@mui/joy/Button';
+import Link from '@mui/joy/Link';
 import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { axiosFetch, generateImageURL } from '../../../utils';
 import './Register.scss'
 
@@ -60,66 +69,98 @@ const Register = () => {
   }
 
   return (
-    <div className="register">
-      <form onSubmit={handleSubmit}>
-        <div className="left">
-          <h1>Create a new account</h1>
-          <label htmlFor="">Full name</label>
-          <input
-            name="fullname"
-            type="text"
-            placeholder="John Doe"
-            onChange={handleChange}
-          />
-          <label htmlFor="">Username</label>
-          <input
-            name="username"
-            type="text"
-            placeholder="johndoe"
-            onChange={handleChange}
-          />
-          <label htmlFor="">Email</label>
-          <input
-            name="email"
-            type="email"
-            placeholder="email"
-            onChange={handleChange}
-          />
-          <label htmlFor="">Password</label>
-          <input name="password" type="password" onChange={handleChange} />
-          <label htmlFor="">Profile Picture</label>
-          <input type="file" onChange={(event) => setImage(event.target.files[0])} />
-          <button type="submit" disabled={loading}>{loading ? 'Loading...' : 'Register'}</button>
-        </div>
-        <div className="right">
-          <p>Already have an account? <Link to='/login'>Signin</Link></p>
-          <h1>I am a client, hiring for a project</h1>
-          <div className="toggle">
-            <label htmlFor="">Activate the client account</label>
-            <label className="switch">
-              <input type="checkbox" name='isSeller' onChange={handleChange} />
-              <span className="slider round"></span>
-            </label>
+    <><div className="register"><CssVarsProvider>
+      <main>
+        <Sheet
+          sx={{
+            width: 950,
+            mx: 'auto', // margin left & right
+            my: 4, // margin top & bottom
+            py: 5, // padding top & bottom
+            px: 5, // padding left & right
+            display: 'flex',
+            flexDirection: 'column',
+            background: 'white',
+            gap: 2,
+            borderRadius: '30px',
+            boxShadow: 'md',
+          }}
+          variant="outlined"
+        >
+          <div>
+            <Typography level="h3" component="h1">
+              <b>Create a new account</b>
+            </Typography>
           </div>
-          <label htmlFor="">Phone Number</label>
-          <input
-            name="phone"
-            type="text"
-            placeholder="+1 1234 567 890"
-            onChange={handleChange}
-          />
-          <label htmlFor="">Description</label>
-          <textarea
-            placeholder="A short description of yourself"
-            name="description"
-            id=""
-            cols="30"
-            rows="10"
-            onChange={handleChange}
-          ></textarea>
-        </div>
-      </form>
-    </div>
+          <form action="" onSubmit={handleSubmit}>
+
+            <div className="left">
+              <FormControl>
+                <FormLabel>Full Name</FormLabel>
+                <Input
+                  name='fullname' placeholder='John Doe' onChange={handleChange} />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Username</FormLabel>
+                <Input
+                  name='username' placeholder='johndoe' onChange={handleChange} />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Email Address</FormLabel>
+                <Input
+                  name="email"
+                  type="email"
+                  placeholder="email"
+                  onChange={handleChange} />
+              </FormControl>
+              <FormControl>
+                <FormLabel>Password</FormLabel>
+                <Input
+                  // html input attribute
+                  name='password' type='password' placeholder='password' onChange={handleChange} />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Profile Picture</FormLabel>
+                <Input
+                  type="file" onChange={(event) => setImage(event.target.files[0])} />
+              </FormControl>
+              
+              <button type="submit" disabled={loading}>{loading ? 'Loading...' : 'Register'}</button>
+              {/* <span>{error && error}</span> */}
+            </div>
+            <div className="right">
+            <p>Already have an account? <Link to='/login'>Signin</Link></p>
+            <h1>I am a client, hiring for a project</h1>
+            <div className="toggle">
+              <label htmlFor="">Activate the client account</label>
+              <label className="switch">
+                <input type="checkbox" name='isSeller' onChange={handleChange} />
+                <span className="slider round"></span>
+              </label>
+            </div>
+            <FormControl>
+                <FormLabel>Phone Number</FormLabel>
+                <Input
+                  name="phone"
+                  type="text"
+                  placeholder="+1 1234 567 890"
+                  onChange={handleChange} />
+              </FormControl>
+
+              <textarea
+              placeholder="A short description of yourself"
+              name="description"
+              id=""
+              cols="30"
+              rows="10"
+              onChange={handleChange}
+            ></textarea>
+            </div>
+          </form>
+        </Sheet>
+      </main>
+    </CssVarsProvider></div></>
   )
 }
 

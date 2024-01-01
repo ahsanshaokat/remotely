@@ -153,7 +153,7 @@ const Navbar = () => {
                         </>
                       )}
                       <Link className="link" to="/orders">
-                        Orders
+                        Bids
                       </Link>
                       <Link className="link" to="/messages">
                         Messages

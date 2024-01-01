@@ -126,7 +126,7 @@ const Gig = () => {
                     }
                   </div>
                   <Link to={`/pay/${_id}`}>
-                    <button>Continue</button>
+                    <button>Place Bid</button>
                   </Link>
                 </div>
                 <h2>About This Gig</h2>
@@ -223,7 +223,7 @@ const Gig = () => {
                   }
                 </div>
                 <Link to={`/pay/${_id}`}>
-                  <button>Continue</button>
+                  <button>Place Bid</button>
                 </Link>
               </div>
             </div>

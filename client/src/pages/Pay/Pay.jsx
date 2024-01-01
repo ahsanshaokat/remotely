@@ -39,7 +39,8 @@ const Pay = () => {
 
   return (
     <div className='pay'>
-      <h2>Pay Securely with Master Card</h2>
+      {/* <h2>Pay Securely with Master Card</h2> */}
+      <h2>Confirm Place Bid</h2>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm data={options} />

@@ -93,7 +93,7 @@ const Add = () => {
   return (
     <div className='add'>
       <div className="container">
-        <h1>Add New Gig</h1>
+        <h1>Add New Project</h1>
         <div className="sections">
           <div className="left">
             <label htmlFor="">Title</label>

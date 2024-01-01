@@ -145,10 +145,10 @@ const Navbar = () => {
                       {user?.isSeller && (
                         <>
                           <Link className="link" to="/my-gigs">
-                            Gigs
+                            Projects
                           </Link>
                           <Link className="link" to="/organize">
-                            Add New Gig
+                            Add New Project
                           </Link>
                         </>
                       )}

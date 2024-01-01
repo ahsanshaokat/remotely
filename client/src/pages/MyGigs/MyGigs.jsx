@@ -52,9 +52,9 @@ const MyGigs = () => {
             ? 'Something went wrong'
             : <div className="container">
               <div className="title">
-                <h1>My Gigs</h1>
+                <h1>My Projects</h1>
                 <Link to='/organize' className='link'>
-                  <button>Add New Gig</button>
+                  <button>Add New Project</button>
                 </Link>
               </div>
               <table>

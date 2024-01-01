@@ -93,9 +93,9 @@ const Register = () => {
         </div>
         <div className="right">
           <p>Already have an account? <Link to='/login'>Signin</Link></p>
-          <h1>I want to become a seller</h1>
+          <h1>I am a client, hiring for a project</h1>
           <div className="toggle">
-            <label htmlFor="">Activate the seller account</label>
+            <label htmlFor="">Activate the client account</label>
             <label className="switch">
               <input type="checkbox" name='isSeller' onChange={handleChange} />
               <span className="slider round"></span>

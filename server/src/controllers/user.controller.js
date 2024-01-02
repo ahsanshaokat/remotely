@@ -17,6 +17,19 @@ const createProfileSkill = async (request, response) => {
     }
 }
 
+const getUsers = async (request, response) => {
+    try {
+        const users = await User.find({ });
+        return response.status(201).send(users);
+    }
+    catch ({ message, status = 500 }) {
+        return response.status(status).send({
+            error: true,
+            message
+        })
+    }
+}
+
 
 const getProfileSkills = async (request, response) => {
     const { _id } = request.params;
@@ -215,4 +228,5 @@ module.exports = {
     deleteUser,
     updatePerson,
     getPerson,
+    getUsers
 }

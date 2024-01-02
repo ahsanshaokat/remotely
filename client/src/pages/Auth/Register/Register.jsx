@@ -47,8 +47,8 @@ const Register = () => {
 
     setLoading(true);
     try {
-      const { url } = await generateImageURL(image);
-      const { data } = await axiosFetch.post('/auth/register', { ...formInput, image: url });
+      // const { url } = await generateImageURL(image);
+      const { data } = await axiosFetch.post('/auth/register', { ...formInput, image: null });
       toast.success('Registration successful!');
       setLoading(false);
       navigate('/login');
@@ -120,7 +120,7 @@ const Register = () => {
                   name='password' type='password' placeholder='password' onChange={handleChange} />
               </FormControl>
 
-              <FormControl>
+              <FormControl sx={{ display: 'none'}}>
                 <FormLabel>Profile Picture</FormLabel>
                 <Input
                   type="file" onChange={(event) => setImage(event.target.files[0])} />
